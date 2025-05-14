@@ -1,0 +1,23 @@
+name: React Build Composite Action
+description: Builds a React app
+inputs:
+  build-dir:
+    description: 'Build directory'
+    required: true
+    default: 'build'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+      shell: bash
+
+    - name: Build app
+      run: npm run build
+      shell: bash
